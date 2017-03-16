@@ -1,5 +1,7 @@
 package components;
 
-public class Noticia {
+import java.util.Date;
 
+public class Noticia {
+	protected Date Fecha;
 }
