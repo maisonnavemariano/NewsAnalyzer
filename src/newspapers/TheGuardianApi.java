@@ -34,8 +34,9 @@ public class TheGuardianApi {
 	public static void main(String[] args){
 		File dir1 = new File("base de datos");
 		dir1.mkdir();
-		for(int i =0; i<=12; i++)
+		for(int i =0; i<= period.length ; i++)
 			generarPeriodo(i);
+		//generarPeriodo(7);
 		
 
 	}
