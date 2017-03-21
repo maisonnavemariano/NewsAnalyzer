@@ -32,15 +32,18 @@ public class TheGuardianApi {
 	
 	
 	public static void main(String[] args){
-		generarPeriodo(0);
+		File dir1 = new File("base de datos");
+		dir1.mkdir();
+		for(int i =0; i<=12; i++)
+			generarPeriodo(i);
 		
 
 	}
 	
 	public static void generarPeriodo(int periodo){
 		List<Document> lista = new ArrayList<Document>();
-
-		String directorio = period[0]+"_noticias";
+		
+		String directorio = "base de datos/"+period[periodo]+"_noticias";
 		File dir = new File(directorio);
 		dir.mkdir();
 		PrintWriter writer = null;
