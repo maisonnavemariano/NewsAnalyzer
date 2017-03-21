@@ -9,6 +9,7 @@ public class Document {
 	protected String headline;
 	protected String trailText;
 	protected String bodyText;
+	protected String webPublicationDate;
 	
 	//protected List<String> words;
 	protected Date date;
@@ -30,6 +31,12 @@ public class Document {
 	}
 	public void setBodyText(String b){
 		this.bodyText = b;
+	}
+	public void setWebPublicationDate(String d){
+		this.webPublicationDate = d;
+	}
+	public String toString(){
+		return "webTitle: "+this.webTitle+"\nsectionName: "+this.sectionName+"\nheadline: "+this.headline+"\ntrailText: "+this.trailText+"\nwebPublicationDate: "+this.webPublicationDate+"\nbodytext: "+this.bodyText+"\n";
 	}
 	
 	
