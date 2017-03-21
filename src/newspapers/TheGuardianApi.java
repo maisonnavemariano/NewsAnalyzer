@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import org.json.*;
 
+import components.Document;
+
 public class TheGuardianApi {
 
 	protected String apikey =  "5c622da5-f682-49f4-aaa5-a3d5e014b416";
@@ -24,6 +26,7 @@ public class TheGuardianApi {
 	}
 	
 	public void generarPeriodo(int periodo){
+		Document d;
 		
 		String API_url = "http://content.guardianapis.com/search?from-date="+from_date[periodo]+"&to-date="+to_date[periodo]+""
 				+ "&page=1&page-size="+page_size+"&show-fields=all&api-key="+apikey;
@@ -32,23 +35,27 @@ public class TheGuardianApi {
 
 
 		JSONObject response = (new JSONObject(documento)).getJSONObject("response");
-		JSONObject document_aux;
+		JSONObject document_aux,fields_aux;
 		int cantPaginas = Integer.parseInt(response.getString("pages"));
-
-		JSONArray results = response.getJSONArray("results");
-		for (int i = 0; i < results.length(); i++)
-		{
-			document_aux = results.getJSONObject(i);
-			// RECUPERAR
-			// 1. BODY TEXT
-			// 2. WEB TITLE
-			// 3. HEADLINE
-			// 4. TRAILTEXT
-			// 5. DATE
-			// 6. SECTION NAME
-			// CREAR EL OBJETO
-			// ALMACENARLO TODO EL PERIODO EN UN SOLO ARCHIVO ? GENERAR toString de Documento para el trabajo.
-		    String post_id = results.getJSONObject(i).getString("post_id");
+		
+		for(int page = 1; page< cantPaginas; page++){
+			API_url = "http://content.guardianapis.com/search?from-date="+from_date[periodo]+"&to-date="+to_date[periodo]+""
+					+ "&page="+page+"&page-size="+page_size+"&show-fields=all&api-key="+apikey;
+			documento = fetchPage(API_url);
+			
+			JSONArray results = response.getJSONArray("results");
+			for (int i = 0; i < results.length(); i++)
+			{
+				document_aux = results.getJSONObject(i);
+				d = new Document();
+				d.setWebTitle(document_aux.getString("webTitle"));
+				d.setSectionName(document_aux.getString("sectionName"));
+				fields_aux = document_aux.getJSONObject("fields");
+				d.setHeadLine(fields_aux.getString("headline"));
+				d.setTrailText(fields_aux.getString("trailText"));
+				d.setBodyText(fields_aux.getString("bodyText"));
+	
+			}
 		}
 		
 

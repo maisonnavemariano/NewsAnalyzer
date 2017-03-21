@@ -10,10 +10,26 @@ public class Document {
 	protected String trailText;
 	protected String bodyText;
 	
-	protected List<String> words;
+	//protected List<String> words;
 	protected Date date;
 	
-	protected Document(){
+	public Document(){
+	}
+	
+	public void setWebTitle(String w){
+		this.webTitle = w;
+	}
+	public void setSectionName(String s){
+		this.sectionName = s;
+	}
+	public void setHeadLine(String h){
+		this.headline = h;
+	}
+	public void setTrailText(String t){
+		this.trailText = t;
+	}
+	public void setBodyText(String b){
+		this.bodyText = b;
 	}
 	
 	
