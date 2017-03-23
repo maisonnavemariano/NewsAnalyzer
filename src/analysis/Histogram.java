@@ -89,7 +89,6 @@ public class Histogram {
 	private static void memoriaUsada(){
 		NumberFormat formatter = new DecimalFormat("#0.00");     
 		Runtime.getRuntime().gc();
-		long total = Runtime.getRuntime().totalMemory();
 		long used  = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		double used_mem = ((used / 1024.0) / 1024.0);
 		System.out.println("Memoria usada: "+formatter.format(used_mem)+" MB");
