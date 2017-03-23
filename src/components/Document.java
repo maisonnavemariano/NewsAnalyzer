@@ -3,6 +3,8 @@ package components;
 import java.util.Date;
 import java.util.List;
 
+import analysis.StopwordsFilter;
+
 public class Document {
 	protected String webTitle;
 	protected String sectionName;
@@ -38,9 +40,17 @@ public class Document {
 	public String toString(){
 		return "webTitle: "+this.webTitle+"\nsectionName: "+this.sectionName+"\nheadline: "+this.headline+"\ntrailText: "+this.trailText+"\nwebPublicationDate: "+this.webPublicationDate+"\nbodytext: "+this.bodyText+"\n";
 	}
-	public void deleteStopwords(){
-		
+	public void deleteStopwords(StopwordsFilter filter){
+		String new_bodyText = "";
+		for(String word : eliminateWhiteSpaces(bodyText).split(" ")){
+			if(! filter.isStopword(word))
+				new_bodyText += word;
+		}
+		this.bodyText = new_bodyText;
 	}
 	
+	private String eliminateWhiteSpaces(String s){
+		return s.replaceAll("\\s+", " ").trim();
+	}
 	
 }

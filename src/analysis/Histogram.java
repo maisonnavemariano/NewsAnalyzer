@@ -3,6 +3,8 @@ package analysis;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,15 @@ public class Histogram {
 	protected static final String BODYTEXT = "bodytext: ";
 	
 	public static void main (String[] args){
+		StopwordsFilter filter = new StopwordsFilter();
 		List<Document> lista = loadDocumentsFile(myfile);
-		
+
+		memoriaUsada();
+		for(Document d : lista){
+			d.deleteStopwords(filter);
+		}
+
+		memoriaUsada();
 	}
 	
 	public static List<Document> loadDocumentsFile(String file){
@@ -75,5 +84,14 @@ public class Histogram {
 			e.printStackTrace();
 		}
 		return documentos;
+	}
+	
+	private static void memoriaUsada(){
+		NumberFormat formatter = new DecimalFormat("#0.00");     
+		Runtime.getRuntime().gc();
+		long total = Runtime.getRuntime().totalMemory();
+		long used  = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+		double used_mem = ((used / 1024.0) / 1024.0);
+		System.out.println("Memoria usada: "+formatter.format(used_mem)+" MB");
 	}
 }
