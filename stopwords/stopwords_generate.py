@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-file1 = "stopwords1.txt"
-file2 = "stopwords2.txt"
-file3 = "stopwords3.txt"
+file1 = "stopwords_part1.txt"
+file2 = "stopwords_part2.txt"
+file3 = "stopwords_part3.txt"
 output = "stopwords.txt"
 
 stopwords = set()
@@ -21,7 +21,13 @@ with open(file3) as f:
 
 print("total stopwords: "+str(len(stopwords)))
 writer = open(output, "w")
+lista = []
 for sw in stopwords:
-	writer.write(sw+"\n")
+	if sw!="":
+		lista.append(sw)
+
+lista.sort()
+for w in lista:
+	writer.write(w+"\n")
 writer.close()
 
