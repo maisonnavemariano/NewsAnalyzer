@@ -38,7 +38,9 @@ public class Document {
 	public String toString(){
 		return "webTitle: "+this.webTitle+"\nsectionName: "+this.sectionName+"\nheadline: "+this.headline+"\ntrailText: "+this.trailText+"\nwebPublicationDate: "+this.webPublicationDate+"\nbodytext: "+this.bodyText+"\n";
 	}
-	
+	public void deleteStopwords(){
+		
+	}
 	
 	
 }
