@@ -10,7 +10,7 @@ import java.util.List;
 
 import components.Document;
 
-public class Histogram {
+public class GenerateHistogram {
 	protected final static String myfile = "base de datos/Enero_noticias/Enero";
 	protected static final String WEB_TITLE = "webTitle: ";
 	protected static final String SECTION_NAME = "sectionName: ";
@@ -27,6 +27,7 @@ public class Histogram {
 		for(Document d : lista){
 			d.deleteStopwords(filter);
 		}
+		
 
 		memoriaUsada();
 	}
