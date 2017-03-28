@@ -59,4 +59,21 @@ public class Document {
 		return s.replaceAll("\\s+", " ").trim().replaceAll("[^A-Za-z0-9 ']", "");
 	}
 	
+	public Histogram getHistogram(){
+		Histogram histogram = new Histogram();
+		
+		for(String palabra: webTitle.split(" ")){
+			histogram.addWord(palabra);
+		}
+		for(String palabra: headline.split(" ")){
+			histogram.addWord(palabra);
+		}
+		for(String palabra : trailText.split(" ")){
+			histogram.addWord(palabra);
+		}
+		for(String palabra : bodyText.split(" ")){
+			histogram.addWord(palabra);
+		}
+		return histogram;
+	}
 }

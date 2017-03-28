@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import components.Document;
+import components.Histogram;
 
 public class GenerateHistogram {
 	protected final static String myfile = "base de datos/Enero_noticias/Enero";
@@ -27,6 +28,11 @@ public class GenerateHistogram {
 		for(Document d : lista){
 			d.deleteStopwords(filter);
 		}
+		Histogram histograma_total = new Histogram();
+		for(Document d : lista){
+			histograma_total = histograma_total.mergeHistogram(d.getHistogram());
+		}
+		
 		
 
 		memoriaUsada();

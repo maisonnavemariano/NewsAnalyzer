@@ -20,6 +20,9 @@ public class Histogram {
 	public int getFrecuency(String word){
 		return histogram.get(word);
 	}
+	public boolean pertenece(String w){
+		return histogram.containsKey(w);
+	}
 	public void setFrecuency(String word, int frec){
 		histogram.put(word, frec);
 	}
@@ -32,8 +35,14 @@ public class Histogram {
 		
 		for(String palabra: h.getPalabras()){
 			Integer frec1 = histogram.get(palabra);
-			int frec_1 = ( frec1 == null?0:frec1);
-			new_histogram.setFrecuency(palabra, h.getFrecuency(palabra) + frec_1);
+			int frec1_int = ( frec1 == null?0:frec1);
+			new_histogram.setFrecuency(palabra, h.getFrecuency(palabra) + frec1_int);
+		}
+		
+		for(String palabra : histogram.keySet()){
+			if(!new_histogram.pertenece(palabra)){
+				new_histogram.setFrecuency(palabra, histogram.get(palabra));
+			}	
 		}
 		return new_histogram;
 	}
