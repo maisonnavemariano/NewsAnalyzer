@@ -46,4 +46,23 @@ public class Histogram {
 		}
 		return new_histogram;
 	}
+	public int size(){
+		return histogram.size();
+	}
+	public String toString(){
+		String toReturn = "";
+		for(String palabra : histogram.keySet()){
+			toReturn = toReturn + "["+palabra+", "+histogram.get(palabra)+"]\n";
+		}
+		return toReturn;
+	}
+	public String toStringLimit(int frec_min){
+		String toReturn = "";
+		for(String palabra : histogram.keySet()){
+			if(histogram.get(palabra)>=frec_min)
+				toReturn = toReturn + "["+palabra+", "+histogram.get(palabra)+"]\n";
+		}
+		return toReturn;
+	}
+	
 }

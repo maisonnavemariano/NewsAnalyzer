@@ -3,6 +3,7 @@ package analysis;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -33,7 +34,10 @@ public class GenerateHistogram {
 			histograma_total = histograma_total.mergeHistogram(d.getHistogram());
 		}
 		
+		System.out.println("Cantidad de palabras: "+histograma_total.size());
 		
+		int frec_min = 1500;
+		writeFile(histograma_total.toStringLimit(frec_min), "base de datos/Histograma/histograma_"+frec_min+".txt");
 
 		memoriaUsada();
 	}
@@ -100,4 +104,15 @@ public class GenerateHistogram {
 		double used_mem = ((used / 1024.0) / 1024.0);
 		System.out.println("Memoria usada: "+formatter.format(used_mem)+" MB");
 	}
+	
+    private static void writeFile(String contenido, String url){
+    	try{
+    	    PrintWriter writer = new PrintWriter(url, "UTF-8");
+    	    writer.print(contenido);
+    	    writer.close();
+    	} catch (IOException e) {
+    	   // do something
+    	}
+    }
+	
 }

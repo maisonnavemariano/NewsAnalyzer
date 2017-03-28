@@ -50,10 +50,13 @@ public class Document {
 	private String eliminateStopwordsFromString(StopwordsFilter filter, String texto){
 		String new_bodyText = "";
 		for(String word : eliminateNonCharAndWhiteSpaces(texto).split(" ")){
-			if(! filter.isStopword(word))
-				new_bodyText += word;
+			if(! filter.isStopword(word.toLowerCase()))
+				new_bodyText += word.toLowerCase() + " ";
 		}
-		return new_bodyText;
+		if(new_bodyText.length()==0)
+			return "";
+		else
+			return new_bodyText.substring(0, new_bodyText.length()-1);
 	}
 	private String eliminateNonCharAndWhiteSpaces(String s){
 		return s.replaceAll("\\s+", " ").trim().replaceAll("[^A-Za-z0-9 ']", "");
